@@ -66,3 +66,48 @@ http://localhost:7860/
 for a2a 
 
 curl -u http://localhost:7860/.well-known/agent.json
+
+
+## Connect to Claude Desktop 
+Configure Claude Desktop Client
+Locate your Claude configuration file:
+
+```json
+ C:\Users\<yourusername>\AppData\Roaming\Claude\claude_desktop_config.json
+```
+Add the following server configuration to the file:
+
+```json
+   "mycustomserver": {
+     "command": "java",
+     "args": [
+       "-jar",
+       "PATH_TO_YOUR_JAR/mcp-connector-full.jar",
+       "http://localhost:7860"
+     ],
+     "timeout": 30000
+   }
+
+```
+
+You can downoad the `mcp-connector-full.jar` from the releases section of this repository. [Here](https://github.com/vishalmysore/mcp-connector/releases/download/release2/mcp-connector-full.jar)
+Download the MCP Connector
+Download the MCP Connector JAR. This is a mandatory component that enables communication between your client and server for MCP protocol , for A2A this is not required.
+
+
+if the above file is empty then you have add in this way
+```
+{
+"mcpServers": {
+"mycustomserver": {
+"command": "java",
+"args": [
+"-jar",
+"PATH_TO_YOUR_JAR/mcp-connector-full.jar",
+"http://localhost:7860"
+],
+"timeout": 30000
+}
+}
+}
+```
